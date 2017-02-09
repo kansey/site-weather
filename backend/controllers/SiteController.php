@@ -6,6 +6,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use Guzzle\Http\Client;
+use Guzzle\Http\EntityBody;
+use Guzzle\Http\Message\Request;
+use Guzzle\Http\Message\Response;
 
 /**
  * Site controller
