@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "guzzle/guzzle": "~3.7",
-        "guzzlehttp/guzzle": "~3.7"
+        "guzzlehttp/guzzle": "~3.7",
+        "light/yii2-xmlparser": "*",
+        "sjaakp/yii2-gcharts": "*"
 
     },
     "require-dev": {

@@ -6,10 +6,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use Guzzle\Http\Client;
-use Guzzle\Http\EntityBody;
-use Guzzle\Http\Message\Request;
-use Guzzle\Http\Message\Response;
+use backend\models\Fetch;
+
 
 /**
  * Site controller
@@ -30,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'fetch-day'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -96,7 +94,22 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
+    }
+
+    public function actionFetchDay()
+    {
+        $model = new Fetch();
+
+        if ($load = $model->FetchDay()) {
+
+            $model->saveInDB($load);
+/*
+            return $this->render('fetch-day', [
+                'content' => $load,
+            ]);
+*/
+            return $this->goHome();
+        }
     }
 }

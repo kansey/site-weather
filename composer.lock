@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d29712504bd6e6aa449d8d9ce88fdcb",
-    "content-hash": "3e234001cf65fd876d95ca598b03e587",
+    "hash": "f2c35d2530cf6646126ca175bc94de26",
+    "content-hash": "bc22d30fe5a1599e85a77406b1f7260e",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -486,6 +486,97 @@
                 "web service"
             ],
             "time": "2014-01-28 22:29:15"
+        },
+        {
+            "name": "light/yii2-xmlparser",
+            "version": "0.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lichunqiang/yii2-xmlparser.git",
+                "reference": "0e86c5d214dd04e28e4360de22aa1e2c7484e318"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lichunqiang/yii2-xmlparser/zipball/0e86c5d214dd04e28e4360de22aa1e2c7484e318",
+                "reference": "0e86c5d214dd04e28e4360de22aa1e2c7484e318",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "light\\yii2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "lichunqiang",
+                    "email": "light-li@hotmail.com"
+                }
+            ],
+            "description": "yii2 xml request parser",
+            "keywords": [
+                "parse",
+                "request",
+                "xml",
+                "yii2"
+            ],
+            "time": "2015-08-15 16:07:34"
+        },
+        {
+            "name": "sjaakp/yii2-gcharts",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sjaakp/yii2-gcharts.git",
+                "reference": "695335f4ac197ea40f0e399b29777468c0fe3829"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sjaakp/yii2-gcharts/zipball/695335f4ac197ea40f0e399b29777468c0fe3829",
+                "reference": "695335f4ac197ea40f0e399b29777468c0fe3829",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "sjaakp\\gcharts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjaak Priester",
+                    "email": "sjaak@sjaakpriester.nl",
+                    "homepage": "http://sjaakpriester.nl"
+                }
+            ],
+            "description": "Google Charts the Yii 2.0 way",
+            "keywords": [
+                "charts",
+                "extension",
+                "visualization",
+                "widget",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-10-29 11:10:36"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1751,16 +1842,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.12",
+            "version": "5.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "944600e244f80a5252679878553b95c63dbf978b"
+                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/944600e244f80a5252679878553b95c63dbf978b",
-                "reference": "944600e244f80a5252679878553b95c63dbf978b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
+                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1920,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-02-08 05:54:05"
+            "time": "2017-02-10 09:05:10"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
