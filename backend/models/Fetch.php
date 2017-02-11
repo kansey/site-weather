@@ -14,22 +14,48 @@ use common\models\Day;
  */
 class Fetch extends Model
 {
-    public function FetchDay()
-    {
+    public function fetchDay()
+    {/*
         $client    = new Client("http://http.foreca.com/feed/");
         $request   = $client->get('feed.php/1hour.xml?user=moscow&pass=N4nkR3At');
         $response  = $request->send();
         $body      = $response->getBody();
 
         $parser    = new XmlParser;
-        $data      = $parser->parse($body,'');
-        $prognosis = $data['loc'][0]['step'];
-        $prognosis = $this->filterPrognosis($prognosis);
+        $data      = $parser->parse($body,'');*/
+        $prognosis = $this->getResponse('feed.php/1hour.xml?user=moscow&pass=N4nkR3At');
+        $prognosis = $this->filterPrognosisOnDay($prognosis);
 
         return (empty($prognosis) ? false : $prognosis);
     }
 
-    private function filterPrognosis($arr)
+    public function fetchWeek()
+    {   /*
+        $filePointer = gzopen("http://http.foreca.com/feed/feed.php/30day.xml.gz?user=moscow&pass=N4nkR3At", "r");
+        $str='';
+
+        if (!$filePointer) {
+            echo "$errstr ($errno)<br>\n";
+        }
+        else {
+            while (!gzeof($filePointer)) {
+                $str.= gzgetc($filePointer);
+            }
+            gzclose($filePointer);
+        }
+
+        $parser    = new XmlParser;
+        $data      = $parser->parse($str,'');
+        $prognosis = $data['loc'][0]['step'];
+        //var_dump($data['loc'][0]['step']);exit();
+        $prognosis = $this->filterPrognosisOnWeek($prognosis);
+        var_dump($prognosis); exit();*/
+        $prognosis = $this->getResponse('http://http.foreca.com/feed/feed.php/day.xml?user=moscow&pass=N4nkR3At');
+        $prognosis = $this->filterPrognosisOnWeek($prognosis);
+        return (empty($prognosis) ? false : $prognosis);
+}
+
+    private function filterPrognosisOnDay($arr)
     {
         $sort = [];
 
@@ -39,13 +65,60 @@ class Fetch extends Model
                 array_push($sort, $value["@attributes"]);
             }
         }
+
         return $sort;
+    }
+
+    private function filterPrognosisOnWeek($days)
+    {
+        $sort       = [];
+        $currentDay = date('Y-m-d');
+        $lastDay    = $this->getLastDay($currentDay);
+        $nextDay    = $currentDay;
+
+        foreach ($days as $day) {
+
+            if (stristr($day["@attributes"]['dt'], $nextDay)) {
+                array_push($sort, $day["@attributes"]);
+            }
+
+            if (strcasecmp($nextDay, $lastDay) < 0) {
+                $nextDay = $this->getNextDay($nextDay);
+            }
+        }
+
+        return $sort;
+    }
+
+    private function getLastDay($current)
+    {
+        $lastDay = new \DateTime($current);
+        $lastDay->modify('+7 day');
+        return $lastDay->format('Y-m-d');
+    }
+
+    private function getNextDay($current)
+    {
+        $nextDay = new \DateTime($current);
+        $nextDay->modify('+1 day');
+        return $nextDay->format('Y-m-d');
+    }
+
+    private function getResponse($query)
+    {
+        $client    = new Client("http://http.foreca.com/feed/");
+        $request   = $client->get($query);
+        $response  = $request->send();
+        $body      = $response->getBody();
+
+        $parser    = new XmlParser;
+        $data      = $parser->parse($body,'');
+
+        return $data['loc'][0]['step'];
     }
 
     public function saveInDB($list)
     {
-
-
         foreach ($list as $item) {
             $model = new Day();
             Day::getDb()->transaction(function($db) use ($model, $item) {

@@ -19,7 +19,7 @@ $this->title = 'My Yii Application';
                     <?= Html::a('Загрузить данные о погоде на день', ['site/fetch-day'], ['class' => 'profile-link']) ?>
                 </li>
                 <li>
-                    <?= Html::a('Загрузить данные о погоде на неделю', ['site/view'], ['class' => 'profile-link']) ?>
+                    <?= Html::a('Загрузить данные о погоде на неделю', ['site/fetch-week'], ['class' => 'profile-link']) ?>
                 </li>
             </ol>
         </div>

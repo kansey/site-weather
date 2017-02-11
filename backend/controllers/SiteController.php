@@ -7,7 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use backend\models\Fetch;
-
+use backend\models\Save;
 
 /**
  * Site controller
@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'fetch-day'],
+                        'actions' => ['logout', 'index', 'fetch-day', 'fetch-week'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -101,14 +101,20 @@ class SiteController extends Controller
     {
         $model = new Fetch();
 
-        if ($load = $model->FetchDay()) {
+        if ($load = $model->fetchDay()) {
+            $save = new Save();
+            $save->saveDayInDB($load);
+            return $this->goHome();
+        }
+    }
 
-            $model->saveInDB($load);
-/*
-            return $this->render('fetch-day', [
-                'content' => $load,
-            ]);
-*/
+    public function actionFetchWeek()
+    {
+        $model = new Fetch();
+
+        if ($load = $model->fetchWeek()) {
+            $save = new Save();
+            $save->saveWeekInDB($load);
             return $this->goHome();
         }
     }
