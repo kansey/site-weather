@@ -34,7 +34,10 @@ class Fetch extends Model
         $sort = [];
 
         foreach ($arr as $value) {
-            array_push($sort, $value["@attributes"]);
+            $date = date('Y-m-d');
+            if (stristr($value["@attributes"]['dt'], $date)) {
+                array_push($sort, $value["@attributes"]);
+            }
         }
         return $sort;
     }
