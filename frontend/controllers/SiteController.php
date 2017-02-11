@@ -14,6 +14,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\DaySearch;
+use frontend\models\WeekSearch;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -81,13 +82,19 @@ class SiteController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false
-            ]);
+        ]);
 
-            return $this->render('index', [
-                'dataProvider' => $dataProvider
-            ]);
+        $weekSearch = new WeekSearch();
+        $list = $weekSearch->getQuery();
 
-        //return $this->render('index');
+        $week = new ActiveDataProvider([
+            'query' => $list,
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'week'=> $week,
+        ]);
     }
 
     /**

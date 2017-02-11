@@ -15,45 +15,18 @@ use common\models\Day;
 class Fetch extends Model
 {
     public function fetchDay()
-    {/*
-        $client    = new Client("http://http.foreca.com/feed/");
-        $request   = $client->get('feed.php/1hour.xml?user=moscow&pass=N4nkR3At');
-        $response  = $request->send();
-        $body      = $response->getBody();
-
-        $parser    = new XmlParser;
-        $data      = $parser->parse($body,'');*/
+    {
         $prognosis = $this->getResponse('feed.php/1hour.xml?user=moscow&pass=N4nkR3At');
         $prognosis = $this->filterPrognosisOnDay($prognosis);
-
         return (empty($prognosis) ? false : $prognosis);
     }
 
     public function fetchWeek()
-    {   /*
-        $filePointer = gzopen("http://http.foreca.com/feed/feed.php/30day.xml.gz?user=moscow&pass=N4nkR3At", "r");
-        $str='';
-
-        if (!$filePointer) {
-            echo "$errstr ($errno)<br>\n";
-        }
-        else {
-            while (!gzeof($filePointer)) {
-                $str.= gzgetc($filePointer);
-            }
-            gzclose($filePointer);
-        }
-
-        $parser    = new XmlParser;
-        $data      = $parser->parse($str,'');
-        $prognosis = $data['loc'][0]['step'];
-        //var_dump($data['loc'][0]['step']);exit();
-        $prognosis = $this->filterPrognosisOnWeek($prognosis);
-        var_dump($prognosis); exit();*/
+    {
         $prognosis = $this->getResponse('http://http.foreca.com/feed/feed.php/day.xml?user=moscow&pass=N4nkR3At');
         $prognosis = $this->filterPrognosisOnWeek($prognosis);
         return (empty($prognosis) ? false : $prognosis);
-}
+    }
 
     private function filterPrognosisOnDay($arr)
     {
@@ -141,6 +114,6 @@ class Fetch extends Model
                 $model->attributes = $values;
                 $model->save();
             });
+        }
     }
-}
 }

@@ -3,6 +3,14 @@ body {
     height: 100%;
 }
 
+.text-center {
+    vertical-align: middle !important;
+}
+
+.text-center-td {
+    text-align: center;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

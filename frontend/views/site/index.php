@@ -4,11 +4,63 @@
 use sjaakp\gcharts\LineChart;
 use sjaakp\gcharts\ColumnChart;
 use sjaakp\gcharts\BarChart;
+use yii\grid\GridView;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
     <div class="body-content">
+
+<?= GridView::widget([
+        'dataProvider' => $week,
+        'columns' => [
+            [
+                'attribute' => 'date',
+                'headerOptions' => ['class' => 'text-center']
+            ],
+            [
+                'attribute' => 'tempMin',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'tempMax',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'rainfall',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'windSpeedMax',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'windDirectionMax',
+                'contentOptions' => ['class' => 'text-center-td'],
+                'headerOptions' => ['class' => 'text-center']
+            ],
+            [
+                'attribute' => 'precipChance',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'averageCloud',
+                'contentOptions' => ['class' => 'text-center-td'],
+            ],
+            [
+                'attribute' => 'sunSet',
+                'contentOptions' => ['class' => 'text-center-td'],
+                'headerOptions' => ['class' => 'text-center']
+            ],
+            [
+                'attribute' => 'moonRise',
+                'contentOptions' => ['class' => 'text-center-td'],
+                'headerOptions' => ['class' => 'text-center']
+            ],
+        ],
+]); ?>
+
         <?= LineChart::widget([
             'height' => '500px',
             'width' => '850px',
