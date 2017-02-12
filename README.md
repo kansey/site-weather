@@ -11,7 +11,7 @@ Frontend part
 1. General weather forecast for the week
 2. Hourly weather forecast for the current date in the form of bar and line charts
 
-DIRECTORY STRUCTURE
+Directory Structure
 -------------------
 
 ```
