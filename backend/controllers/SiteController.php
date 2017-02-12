@@ -77,6 +77,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -97,6 +98,9 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * @return mixed
+     */
     public function actionFetchDay()
     {
         $model = new Fetch();
@@ -106,8 +110,17 @@ class SiteController extends Controller
             $save->saveDayInDB($load);
             return $this->goHome();
         }
+        else {
+            return $this->render('error', [
+                'message'=> 'Не удалось получить данные от источника',
+                'name' => 'Http error'
+            ]);
+        }
     }
 
+    /**
+     * @return mixed
+     */
     public function actionFetchWeek()
     {
         $model = new Fetch();
@@ -116,6 +129,12 @@ class SiteController extends Controller
             $save = new Save();
             $save->saveWeekInDB($load);
             return $this->goHome();
+        }
+        else {
+            return $this->render('error', [
+                'message'=> 'Не удалось получить данные от источника',
+                'name' => 'Http error'
+            ]);
         }
     }
 }

@@ -11,6 +11,21 @@ body {
     text-align: center;
 }
 
+.line-chart {
+}
+
+.column-chart{
+}
+
+.bar-chart{
+}
+
+.week > p {
+    text-align: center;
+    background-color: transparent;
+
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
